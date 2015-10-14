@@ -8,3 +8,5 @@
 
 # Excel Backup File
 *.xlk
+
+.DS_STORE
