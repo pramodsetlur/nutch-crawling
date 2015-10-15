@@ -28,11 +28,15 @@ This will create 2 files - URLlist.txt and image_metadata.txt
 URLlist.txt - List of image URLs
 image_metadata.txt - Metadata of the image urls
 
-a. You will need the above files to execute either exactduplicates.py or nearduplicates.py
+You will need the above files to execute either exactduplicates.py or nearduplicates.py
 Both of the above file names have been hard coded in the files below.
 
+a.
 $ python exactduplicates.py
 
-b. python nearduplicates.py
+b.
+$ python nearduplicates.py
 
 ###Task #7
+We followed the instuctions at Nutch similarity scoring filter's GitHub link.
+
