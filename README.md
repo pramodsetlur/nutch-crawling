@@ -19,4 +19,20 @@ CustomPaginationHandler.java - This handler finds all the anchor tags and append
 We upgraded Tika as mentioned to 1.1-SNAPSHOT
 
 ###Task #5
+We enabled the protocol-interactive-selenium plugin and were able to circumvent many URLs that were not crawled initally
 
+###Task #6
+Execute 
+$ python image_metadata.py
+This will create 2 files - URLlist.txt and image_metadata.txt
+URLlist.txt - List of image URLs
+image_metadata.txt - Metadata of the image urls
+
+a. You will need the above files to execute either exactduplicates.py or nearduplicates.py
+Both of the above file names have been hard coded in the files below.
+
+$ python exactduplicates.py
+
+b. python nearduplicates.py
+
+###Task #7
