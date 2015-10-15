@@ -73,17 +73,21 @@ public class DefaultHandler implements InteractiveSeleniumHandler {
 		URI uri = new URI(originalURL);
 		String host = uri.getHost();
 		setXpath(host)
-
+                
+                //Open the page using GET and find the 'Next' button using the xpath
 		driver.get(originalURL);
 		WebElement pagination = driver.findElements(By.xpath(xpath));
 		List<HtmlAnchor> allAnchors = new ArrayList<HtmlAnchor>();
 		while (null != pagination) {
+                        //Retrieve all the anchor tags from the page and add it into a list
 			HtmlPage htmlPage = new HtmlPage(originalURL);
 			List<HtmlAnchor> anchors = htmlPage.getAnchors();
 			allAnchors.addAll(anchors);
 
 			pagination.click();
 		}
+                //Return the list of anchors that is collected to HttpResponse. 
+                //We have modified the HttpResponse class to accept a list of anchor tags and hence add these URLs collected from the anchor tags to the Nutch db unfetched URL list
 		return allAnchors;
 	}
     public boolean shouldProcessURL(String URL) {
