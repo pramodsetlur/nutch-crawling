@@ -37,6 +37,11 @@ public class DefaultHandler implements InteractiveSeleniumHandler {
 	public static final String URL_GUNS_BROKER = "gunbroker.com";
 	public static final String GUNS_BROKER_XPATH = "//*[@id=\"pagerNext\"]";
 
+	public static final String URL_GUNS_AD = "http://www.ncgunads.com/";
+	public static final String GUNS_AD_XPATH = "//*[@id=\"classifiedsContainer\"]/table/tbody/tr/td[2]/table[2]/tbody/tr/td[1]/div/div";
+
+	public static final String URL_DALLAS_GUNS = "http://www.dallasguns.com";
+	public static final String DALLAS_GUNS_XPATH = "//*[@id=\"pagination\"]/span/a[4]";
 
 	private setXpath(String host) {
 		switch host {
@@ -48,6 +53,13 @@ public class DefaultHandler implements InteractiveSeleniumHandler {
 				this.xpath = GUNS_BROKER_XPATH;
 				break;
 
+			case URL_GUNS_AD:
+				this.xpath = GUNS_AD_XPATH;
+				break;
+
+			case URL_DALLAS_GUNS:
+				this.xpath = DALLAS_GUNS_XPATH;
+				break;
 
 
 			default:
