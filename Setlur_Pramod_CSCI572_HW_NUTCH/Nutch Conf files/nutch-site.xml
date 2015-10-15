@@ -1,0 +1,114 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!-- Put site-specific property overrides in this file. -->
+
+<configuration>
+<property>
+ <name>http.agent.name</name>
+ <value>Spider#32Crawler</value>
+</property>
+
+
+<property>
+  <name>http.max.delays</name>
+  <value>1000</value>
+  <description>The number of times a thread will delay when trying to
+  fetch a page.  Each time it finds that a host is busy, it will wait
+  fetcher.server.delay.  After http.max.delays attepts, it will give
+  up on the page for now.</description>
+</property>
+
+<property>
+  <name>http.timeout</name>
+  <value>80000</value>
+  <description>The default network timeout, in milliseconds.</description>
+</property>
+
+<property>
+  <name>http.redirect.max</name>
+  <value>1</value>
+  <description>The maximum number of redirects the fetcher will follow when
+  trying to fetch a page. If set to negative or 0, fetcher won't immediately
+  follow redirected URLs, instead it will record them for later fetching.
+  </description>
+</property>
+
+<property>
+  <name>generate.update.crawldb</name>
+  <value>true</value>
+  <description>For highly-concurrent environments, where several
+  generate/fetch/update cycles may overlap, setting this to true ensures
+  that generate will create different fetchlists even without intervening
+  updatedb-s, at the cost of running an additional job to update CrawlDB.
+  If false, running generate twice without intervening
+  updatedb will generate identical fetchlists.</description>
+</property>
+
+<property>
+  <name>http.content.limit</name>
+  <value>-1</value>
+  <description>The length limit for downloaded content using the http://
+  protocol, in bytes. If this value is nonnegative (>=0), content longer
+  than it will be truncated; otherwise, no truncation at all. Do not
+  confuse this setting with the file.content.limit setting.
+  </description>
+</property>
+
+<property>
+  <name>http.enable.if.modified.since.header</name>
+  <value>false</value>
+  <description>Whether Nutch sends an HTTP If-Modified-Since header. It reduces
+  bandwidth when enabled by not downloading pages that respond with an HTTP
+  Not-Modified header. URL's that are not downloaded are not passed through
+  parse or indexing filters. If you regularly modify filters, you should force
+  Nutch to also download unmodified pages by disabling this feature.
+  </description>
+</property>
+
+<property>
+  <name>db.update.purge.404</name>
+  <value>true</value>
+  <description>If true, updatedb will add purge records with status DB_GONE
+  from the CrawlDB.
+  </description>
+</property>
+
+<property>
+  <name>fetcher.threads.fetch</name>
+  <value>20</value>
+  <description>The number of FetcherThreads the fetcher should use.
+  This is also determines the maximum number of requests that are
+  made at once (each FetcherThread handles one connection). The total
+  number of threads running in distributed mode will be the number of
+  fetcher threads * number of nodes as fetcher has one map task per node.
+  </description>
+</property>
+
+<property>
+   <name>plugin.includes</name>
+   <value>protocol-interactiveselenium|urlfilter-regex|parse-(html|tika)|scoring-similarity|index-(basic|anchor)|indexer-solr|scoring-opic|urlnormalizer-(pass|regex|basic)</value>
+   <description></description>
+ </property>
+
+<property>
+  <name>interactiveselenium.handlers</name>
+  <value>CustomHandlerPagination,CustomLoginHandler,DefalultMultiInteractionHandler,DefaultClickAllAjaxLinksHandler,DefaultHandler</value>
+  <description>
+    A comma separated list of Selenium handlers that should be run for a given
+    URL. The DefaultHandler causes the same functionality as protocol-selenium.
+    Custom handlers can be implemented in the plugin package and included here.
+  </description>
+</property>
+
+<property>
+    <name>scoring.similarity.model.path</name>
+    <value>goldstandard.txt</value>
+</property>
+
+<property>
+    <name>scoring.similarity.stopword.file</name>
+    <value>stopwords.txt</value>
+</property>
+
+</configuration>
