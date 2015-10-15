@@ -37,6 +37,11 @@ public class DefaultHandler implements InteractiveSeleniumHandler {
 	public static final String URL_GUNS_BROKER = "gunbroker.com";
 	public static final String GUNS_BROKER_XPATH = "//*[@id=\"pagerNext\"]";
 
+	public static final String URL_GUNS_AD = "http://www.ncgunads.com/";
+	public static final String GUNS_AD_XPATH = "//*[@id=\"classifiedsContainer\"]/table/tbody/tr/td[2]/table[2]/tbody/tr/td[1]/div/div";
+
+	public static final String URL_DALLAS_GUNS = "http://www.dallasguns.com";
+	public static final String DALLAS_GUNS_XPATH = "//*[@id=\"pagination\"]/span/a[4]";
 
 	private setXpath(String host) {
 		switch host {
@@ -48,6 +53,13 @@ public class DefaultHandler implements InteractiveSeleniumHandler {
 				this.xpath = GUNS_BROKER_XPATH;
 				break;
 
+			case URL_GUNS_AD:
+				this.xpath = GUNS_AD_XPATH;
+				break;
+
+			case URL_DALLAS_GUNS:
+				this.xpath = DALLAS_GUNS_XPATH;
+				break;
 
 
 			default:
@@ -61,17 +73,21 @@ public class DefaultHandler implements InteractiveSeleniumHandler {
 		URI uri = new URI(originalURL);
 		String host = uri.getHost();
 		setXpath(host)
-
+                
+                //Open the page using GET and find the 'Next' button using the xpath
 		driver.get(originalURL);
 		WebElement pagination = driver.findElements(By.xpath(xpath));
 		List<HtmlAnchor> allAnchors = new ArrayList<HtmlAnchor>();
 		while (null != pagination) {
+                        //Retrieve all the anchor tags from the page and add it into a list
 			HtmlPage htmlPage = new HtmlPage(originalURL);
 			List<HtmlAnchor> anchors = htmlPage.getAnchors();
 			allAnchors.addAll(anchors);
 
 			pagination.click();
 		}
+                //Return the list of anchors that is collected to HttpResponse. 
+                //We have modified the HttpResponse class to accept a list of anchor tags and hence add these URLs collected from the anchor tags to the Nutch db unfetched URL list
 		return allAnchors;
 	}
     public boolean shouldProcessURL(String URL) {
