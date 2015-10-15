@@ -16,13 +16,18 @@ CustomLoginHandler.java - This handler finds the username and the password for e
 CustomPaginationHandler.java - This handler finds all the anchor tags and appends it to a list. Simultaneously we find the "next" button to paginate to the other pages
 
 ###Task #4
-We upgraded Tika as mentioned to 1.1-SNAPSHOT
+We upgraded Tika as mentioned to 1.10
 
 ###Task #5
 We enabled the protocol-interactive-selenium plugin and were able to circumvent many URLs that were not crawled initally
 
 ###Task #6
 Execute 
+$ bin/nutch mergesegs <output_dir1> -dir <path_to_segment_dir> 
+$ bin/nutch readseg -dump <<PATH_TO_SEGMENTS_OF_output_dir1> <OutputDIR_2> -nocontent -nofetch -nogenerate -noparse -noparsedata
+
+The dump file genereated from above is used by image_metadata.py
+
 $ python image_metadata.py
 This will create 2 files - URLlist.txt and image_metadata.txt
 URLlist.txt - List of image URLs
@@ -53,7 +58,7 @@ open cluster-d3.html
 
 ###Task #10
 This task is to run the crawls using Memex-explorer
-# Following command in the memex environment in Anaconda.
+Execute the following command in memex environment in Anaconda.
 crawl ~/urls /tmp/output 3
 
 
