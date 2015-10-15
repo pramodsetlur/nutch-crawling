@@ -4,7 +4,7 @@ Custom Selenium plugin drivers
 Urls after Selenium.xslx
 goldstandard.txt
 stopwords.txt
-
+nutch-site.xml
 
 
 
@@ -14,3 +14,4 @@ Change the stats for selenium nutch
 change the stats for step 7 stats
 Add info for 8.d
 insert diagram for 9.a
+Add custom handler inside nutch-site.xml
