@@ -40,3 +40,20 @@ $ python nearduplicates.py
 ###Task #7
 We followed the instuctions at Nutch similarity scoring filter's GitHub link.
 
+###Task #8
+This task is to crawl inside Nutch server
+$ python nutch_server_crawl.py weapons-seeds.txt
+
+###Task #9 
+This tak is to run the tika-similarity over the crawled data
+python similarity.py -f crawl_images
+python value-similarity.py -f crawl_images
+python cluster-scores.py 
+open cluster-d3.html
+
+###Task #10
+This task is to run the crawls using Memex-explorer
+# Following command in the memex environment in Anaconda.
+crawl ~/urls /tmp/output 3
+
+
